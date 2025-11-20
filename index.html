@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GCM - Nova Capital</title>
+<link rel="icon" href="imagens/logo-gcm.png" type="image/png">
+
+<style>
+body {
+  margin:0;
+  background: linear-gradient(135deg, #0011ff, #0047ff);
+  font-family: 'Roboto', Arial, sans-serif;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* ======== HEADER ======== */
+header {
+  width:100%;
+  height:80px;
+  background:#000d16;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+  box-sizing:border-box;
+  box-shadow:0 4px 6px rgba(0,0,0,0.3);
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:1000;
+}
+
+.logo {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:22px;
+  font-weight:bold;
+  color:#fff;
+  animation: fadeIn 1s ease-out;
+}
+
+.logo img {
+  height:45px;
+  width:auto;
+}
+
+nav {
+  display:flex;
+  gap:15px;
+}
+
+nav button {
+  background:#004d80;
+  border:0;
+  padding:10px 18px;
+  border-radius:6px;
+  color:#fff;
+  font-size:14px;
+  cursor:pointer;
+  transition: 0.3s;
+}
+
+nav button:hover {
+  background:#0066cc;
+  transform: translateY(-2px);
+}
+
+/* ======== MAIN ======== */
+main {
+  min-height:calc(100vh - 80px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:120px 20px 40px;
+  text-align:center;
+}
+
+.welcome-card {
+  max-width:900px;
+  background:rgba(255,255,255,0.1);
+  padding:40px;
+  border-radius:16px;
+  box-shadow:0 0 30px rgba(0,0,0,0.7);
+  animation: fadeUp 1s ease-out;
+}
+
+/* ======== DIALOGS ======== */
+dialog {
+  border:0;
+  padding:20px;
+  border-radius:12px;
+  background:#003b63;
+  color:#fff;
+  max-width:450px;
+  animation: fadeUp 0.5s ease-out;
+}
+
+dialog::backdrop {
+  background:rgba(0,0,0,0.7);
+}
+
+.close-btn {
+  background:#002b45;
+  color:#fff;
+  padding:8px 14px;
+  border:0;
+  border-radius:6px;
+  cursor:pointer;
+  margin-top:10px;
+  transition:0.2s;
+}
+
+.close-btn:hover {
+  background:#004080;
+}
+
+/* ======== FORM ELEMENTS ======== */
+input, select, textarea {
+  width:100%;
+  padding:10px;
+  border-radius:6px;
+  border:none;
+  font-size:14px;
+  background:rgba(255,255,255,0.15);
+  color:#04021a;
+  transition:0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline:none;
+  background:rgba(255,255,255,0.25);
+}
+
+textarea {
+  resize:none;
+  min-height:50px;
+}
+
+/* ======== BUTTONS IN FORM ======== */
+.form-buttons {
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+/* ======== ANIMATIONS ======== */
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(-10px);}
+  to {opacity:1; transform: translateY(0);}
+}
+
+@keyframes fadeUp {
+  from {opacity:0; transform: translateY(20px);}
+  to {opacity:1; transform: translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <img src="imagens/logo-gcm.png" alt="Logo">Guarda Civil Metropolitana
+  </div>
+  <nav>
+    <button onclick="window.open('https://discord.com/channels/1003467805246627930/1003467806668505116','_blank')">Atendimento</button>
+    <button onclick="dlgForm.showModal()">Formulário</button>
+    <button onclick="dlgEdital.showModal()">Edital</button>
+  </nav>
+</header>
+
+<main>
+  <div class="welcome-card">
+    <h1>Sobre a GCM - Nova Capital</h1>
+    <p>A Guarda Civil Metropolitana de Nova Capital tem como missão principal proteger o cidadão, garantir a ordem pública e contribuir para uma cidade mais segura e organizada. Nossos agentes atuam com dedicação, respeito e comprometimento, representando a força e a disciplina da segurança pública municipal. Trabalhamos em conjunto com as demais forças de segurança, prezando sempre pela ética, profissionalismo e espírito de equipe. Nossa prioridade é servir e proteger cada morador da cidade com responsabilidade e coragem.</p>
+  </div>
+</main>
+
+<!-- ======== DIALOGS ======== -->
+<dialog id="dlgEdital">
+  <h2 style="text-align:center;">Edital</h2>
+  <p>Informamos que o período de inscrições para este edital foi encerrado. Não serão aceitas novas inscrições ou solicitações após a data limite estipulada. Agradecemos a todos os interessados pela participação e atenção às normas estabelecidas.
+
+Para mais informações ou esclarecimentos, entre em contato através dos canais oficiais de atendimento.</p>
+  <button class="close-btn" onclick="dlgEdital.close()">Fechar</button>
+</dialog>
+
+<dialog id="dlgForm">
+  <h2 style="text-align:center;">Formulário de Inscrição</h2>
+  <form id="formWebhook" style="display:flex; flex-direction:column; gap:10px; max-width:400px; margin:0 auto;">
+    <input type="text" name="nome" placeholder="Nome Completo" required>
+    <input type="text" name="cpf" placeholder="CPF (ID)" required>
+    <select name="sexo" required>
+      <option value="">Sexo</option>
+      <option>Masculino</option>
+      <option>Feminino</option>
+    </select>
+    <input type="text" name="civil" placeholder="Estado Civil" required>
+    <input type="text" name="telefone" placeholder="Telefone" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="number" name="idade" placeholder="Idade" required>
+    <input type="text" name="discord" placeholder="ID Discord" required>
+    <select name="antecedente" required>
+      <option value="">Possui antecedentes?</option>
+      <option>Sim</option>
+      <option>Não</option>
+    </select>
+    <select name="turnos" required>
+      <option value="">Disponibilidade de Turnos?</option>
+      <option>Sim</option>
+      <option>Não</option>
+    </select>
+    <textarea name="experiencia" placeholder="Experiência anterior"></textarea>
+    <textarea name="observacoes" placeholder="Observações"></textarea>
+
+    <div class="form-buttons">
+      <button type="submit" class="close-btn" style="flex:1;">Enviar</button>
+      <button type="button" class="close-btn" onclick="dlgForm.close()" style="flex:1;">Fechar</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+document.getElementById('formWebhook').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.target));
+
+  try{
+    const res = await fetch('https://70038f49e08a74ea1e2806166f03e3fa.m.pipedream.net/', { // substitua pela sua URL da API
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(data)
+    });
+
+    if(res.ok){
+      alert('✅ Formulário enviado com sucesso!');
+      dlgForm.close();
+    } else {
+      alert('❌ Erro ao enviar formulário.');
+    }
+  }catch(err){
+    alert('❌ Erro ao enviar formulário.');
+    console.error(err);
+  }
+});
+</script>
+
+
+
+<script src="interacoes.js"></script>
+
+
+</body>
+</html>
